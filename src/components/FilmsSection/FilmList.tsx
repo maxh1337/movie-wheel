@@ -19,7 +19,7 @@ export default function FilmList() {
   };
 
   return (
-    <div className="w-[34%]">
+    <div className="flex-shrink-0 w-[34%]">
       {/* 🔥 переключатель режима */}
       <h3 className="mb-2">Режимы:</h3>
       <div className="flex gap-2 mb-5">

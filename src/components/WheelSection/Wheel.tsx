@@ -93,7 +93,7 @@ export default function Wheel() {
     .join(", ");
 
   return (
-    <div className="flex flex-col items-center relative w-[70%]">
+    <div className="flex flex-col items-center relative flex-shrink-0 w-[66%]">
       <div
         className="absolute -top-3 z-20 w-0 h-0 
           border-l-[15px] border-r-[15px] border-t-[25px]
