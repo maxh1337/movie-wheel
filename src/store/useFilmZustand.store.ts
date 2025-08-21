@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 export interface Film {
   position: number;
   title: string;
+  eliminated: boolean;
 }
 
 type Mode = "elimination" | "normal";
@@ -15,6 +16,7 @@ interface FilmStore {
   addFilm: (title: string) => void;
   removeFilm: (position: number) => void;
   editFilm: (position: number, newTitle: string) => void;
+  setEliminated: (position: number) => void;
   setMode: (mode: Mode) => void;
   reset: () => void;
 }
@@ -33,6 +35,7 @@ export const useFilmZustand = create<FilmStore>()(
                 ? state.films[state.films.length - 1].position + 1
                 : 1,
             title,
+            eliminated: false,
           };
           return { films: [...state.films, newFilm] };
         }),
@@ -50,6 +53,12 @@ export const useFilmZustand = create<FilmStore>()(
         })),
 
       setMode: (mode) => set(() => ({ mode })),
+      setEliminated: (position) =>
+        set((state) => ({
+          films: state.films.map((film) =>
+            film.position === position ? { ...film, eliminated: true } : film
+          ),
+        })),
 
       reset: () => set(() => ({ films: [], mode: "normal" })),
     }),

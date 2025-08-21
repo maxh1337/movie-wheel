@@ -1,15 +1,11 @@
 @import "tailwindcss";
 
-:root {
-  /* --background: #ffffff; */
-  /* --foreground: #171717; */
-}
-
 @theme inline {
-  /* --color-background: var(--background); */
-  /* --color-foreground: var(--foreground); */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --font-museo: "Museo", ui-sans-serif, system-ui, sans-serif;
+  --font-radio: "Radio", ui-sans-serif, system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,6 +13,22 @@
     --background: #ffffff;
     /* --foreground: #ededed; */
   }
+}
+
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/fonts/MuseoSansCyrl-100.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Radio";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/fonts/roadradio.woff2") format("woff2");
 }
 
 body {

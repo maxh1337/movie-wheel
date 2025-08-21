@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { IoMdTrash } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
+import { twMerge } from "tailwind-merge";
 import { Film, useFilmZustand } from "../../store/useFilmZustand.store";
 
 export interface FilmItemProps {
@@ -18,11 +19,19 @@ export default function FilmItem({ film }: FilmItemProps) {
     if (title.trim()) {
       editFilm(film.position, title.trim());
       setIsEditing(false);
+
+      const audio = new Audio("/sounds/goyda.mp3");
+      audio.play();
     }
   };
 
   return (
-    <div className="text-white bg-black flex border border-white rounded-xl px-3 py-2 mb-2 items-center justify-between">
+    <div
+      className={twMerge(
+        "flex border border-white rounded-xl px-3 py-2 mb-2 items-center justify-between",
+        film.eliminated ? "bg-gray-700 opacity-50" : "bg-black text-white"
+      )}
+    >
       <div className="flex items-center gap-2">
         <p className="w-8 h-8 flex items-center justify-center text-sm bg-black mr-2">
           {film.position}
@@ -52,7 +61,11 @@ export default function FilmItem({ film }: FilmItemProps) {
         </span>
         <span
           className="group rounded-full p-2 transition-colors cursor-pointer hover:bg-white"
-          onClick={() => removeFilm(film.position)}
+          onClick={() => {
+            removeFilm(film.position);
+            const audio = new Audio("/sounds/delete.mp3");
+            audio.play();
+          }}
         >
           <IoMdTrash className="w-5 h-5 text-white transition-colors group-hover:text-black" />
         </span>

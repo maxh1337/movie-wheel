@@ -12,6 +12,9 @@ export default function FilmList() {
   const handleAddFilm = () => {
     if (!title.trim()) return;
     addFilm(title.trim());
+    const audio = new Audio("/sounds/rojer-that.mp3");
+    audio.volume = 0.3;
+    audio.play();
     setTitle("");
   };
 
@@ -21,7 +24,11 @@ export default function FilmList() {
       <h3 className="mb-2">Режимы:</h3>
       <div className="flex gap-2 mb-5">
         <button
-          onClick={() => setMode("normal")}
+          onClick={() => {
+            const audio = new Audio("/sounds/okei.mp3");
+            audio.play();
+            setMode("normal");
+          }}
           className={twMerge(
             "px-3 py-2 rounded-xl border cursor-pointer",
             mode === "normal"
@@ -32,7 +39,11 @@ export default function FilmList() {
           Обычный
         </button>
         <button
-          onClick={() => setMode("elimination")}
+          onClick={() => {
+            const audio = new Audio("/sounds/okei.mp3");
+            audio.play();
+            setMode("elimination");
+          }}
           className={twMerge(
             "px-3 py-2 rounded-xl border cursor-pointer",
             mode === "elimination"
@@ -72,7 +83,7 @@ export default function FilmList() {
 
         <div className="mt-2">
           {films.length === 0 ? (
-            <p className="text-black text-center text-sm">
+            <p className="text-black text-center text-sm mt-5">
               Список фильмов пуст
             </p>
           ) : (
