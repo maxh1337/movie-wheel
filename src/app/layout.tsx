@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { twMerge } from "tailwind-merge";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,7 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={twMerge(
+          "antialiased p-8 flex flex-col items-center px-50",
+          geistSans.variable,
+          geistMono.variable
+        )}
       >
         {children}
       </body>
